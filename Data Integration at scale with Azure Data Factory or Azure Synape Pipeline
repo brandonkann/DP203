@@ -1,0 +1,21 @@
+Azure Data Factory:
+- cloud based ETL and data integration service tat allows 
+data driven workflows for orchestrating data movement 
+- You can create data-driven workflows called pipelines 
+- Build complex ETL processes that transform data visually with data flows 
+- Sometimes uses Azure Databricks to execute transformation queries 
+
+Data integration Patterns:
+Extract:
+    - Define data source: resource group, subscription and identity information such as a key or a secret
+    - Define the data: Identifiy the data to be extracted, could be a SQL query 
+
+Transform: 
+    - includes splitting, combining , deriving, adding, removing or pivoting columns
+    - Aggregation might be needed 
+
+Load: 
+    - Many azure destinations accept JSON, file or blob 
+
+ETL Tools:
+    - Azure data facotry provides over 100 enterprise connectors
