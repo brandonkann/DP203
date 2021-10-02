@@ -5,6 +5,9 @@ data driven workflows for orchestrating data movement
 - Build complex ETL processes that transform data visually with data flows 
 - Sometimes uses Azure Databricks to execute transformation queries 
 
+Cluster: 
+ - A cluster is a large group of data points close to one another
+
 Data integration Patterns:
 Extract:
     - Define data source: resource group, subscription and identity information such as a key or a secret
@@ -19,3 +22,49 @@ Load:
 
 ETL Tools:
     - Azure data facotry provides over 100 enterprise connectors
+
+
+Understanding Azure Data Factory Components: DataSet, Activity, Pipeline, Linked Service
+- Azure Data Factory is composed of four core components: 
+    - Linked Service: connection strips which defines the connection information to connect to external data services
+    - Once Linked service is defined -> ADF is made aware of datasets 
+    - Datasets represent data structure within the data store that is being reference by the Linked Service Object 
+    - Activites contain transformation logic or the analysis commands of the ADF work 
+        - includes= Mapping data flow, Execution of stored procedure, Hive Query or Pig script 
+        - Multiple activites can be logically grouped together with an object referred as a Pipline
+
+- Control Flow: 
+    - Orchestration of pipeline activities that including chaing activities in sequence, branching, defineing parameters at the pipline level
+    and passed passing arguments while invoking the pipeline on-demand or from a trigger  
+
+- Parameters are key-value pairs of read-only configuration. Parameters are passed during execution from the run context
+
+- ADF has an integration runtime that enables it to bridge between the activity and linked Serivce objects
+
+Check Image on: https://docs.microsoft.com/en-us/learn/modules/data-integration-azure-data-factory/5-understand-components
+
+- To create and manage Child resources in Azure portal you must belong to Data Factory Contributor role 
+- Create/manage resources with PowerShell or SDK = contributor role 
+
+Example of creating a Linked service with the following: 
+Azure SQL database: 
+{
+  "name": "AzureSqlLinkedService",
+  "properties": {
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Server=tcp:<server-name>.database.windows.net,1433;Database=ctosqldb;User ID=ctesta-oneill;Password=P@ssw0rd;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
+    }
+  }
+}
+
+Azure Blob Storage: 
+{
+  "name": "StorageLinkedService",
+  "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=ctostorageaccount;AccountKey=<account-key>"
+    }
+  }
+}
